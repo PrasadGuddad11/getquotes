@@ -52,8 +52,8 @@ function extractDimensions(text) {
 }
 
 // Mock fetch quotes
-function calculateQuote(payload) {
-    const ratePerKg = 10;  // Example rate per kg
+function calculateQuote(payload,rate) {
+    const ratePerKg = rate;  // Example rate per kg
     const ratePerCubicMeter = 100; // Example rate per cubic meter
 
     const weightCost = payload.package.weight.value * ratePerKg;
@@ -92,9 +92,9 @@ app.post('/get-quotes', async (req, res) => {
         },
     };
 
-    const dhlQuote = calculateQuote(payload);
-    const fedexQuote = calculateQuote(payload);
-    const upsQuote = calculateQuote(payload);
+    const dhlQuote = calculateQuote(payload,10);
+    const fedexQuote = calculateQuote(payload,12);
+    const upsQuote = calculateQuote(payload,14);
 
     res.json({
         success: true,
