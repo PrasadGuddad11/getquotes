@@ -78,7 +78,10 @@ app.post('/get-quotes', async (req, res) => {
     const dimensions = extractDimensions(emailText);
 
     if (!sourceAddress || !destinationAddress || !weight || !dimensions) {
-        return res.status(400).json({ error: 'Could not extract all required information' });
+        return res.status(200).json({
+ error: `Could not extract all required information,
+  make sure you share all the data like source country, destination country, weight and dimensions (Height * width * length) of the product
+` });
     }
 
     // Creating the payload
